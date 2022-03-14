@@ -5,22 +5,29 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
-  const [clientCountryCode, setClientCountryCode] = useState("");
+interface HomeProps {
+  clientCountryCode: string;
+}
+
+export default function Home() {
+
+  // podemos fazer da forma que esta abaixo também: 👇👇
+
+  // const [clientCountryCode, setClientCountryCode] = useState("");
   
-  useEffect(() => {
-    async function test() {
-      const response = await fetch("/api/clientcountry", {
-        method: "GET"
-      });
+  // useEffect(() => {
+  //   async function test() {
+  //     const response = await fetch("/api/clientcountry", {
+  //       method: "GET"
+  //     });
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      setClientCountryCode(data.response);
-    }
+  //     setClientCountryCode(data.countryCode);
+  //   }
 
-    test();
-  }, []);
+  //   test();
+  // }, []);
 
   return (
     <div className={styles.container}>
@@ -31,11 +38,30 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1>Test</h1>
-        {clientCountryCode ? clientCountryCode : "BR"}
+        {/* <h1>code: {clientCountryCode && clientCountryCode}</h1> */}
+        
+        {/* <Image
+          src={`https://countryflagsapi.com/png/${clientCountryCode}`}
+          width={200}
+          height={200}
+        /> */}
       </main>
     </div>
   )
 }
 
-export default Home;
+export const getStaticProps: GetStaticProps = async ({}) => {
+  const response = await fetch("https://user-location-xi.vercel.app/api/clientcountry", {
+    method: "GET"
+  });
+
+  const data = await response.json();
+
+  console.log(data.countryCode);
+
+  return {
+    props: {
+      // clientCountryCode: data.countryCode
+    }
+  }
+}
