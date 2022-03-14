@@ -9,7 +9,7 @@ interface HomeProps {
   clientCountryCode: string;
 }
 
-export default function Home() {
+export default function Home({ clientCountryCode }: HomeProps) {
 
   // podemos fazer da forma que esta abaixo também: 👇👇
 
@@ -38,30 +38,30 @@ export default function Home() {
       </Head>
 
       <main>
-        {/* <h1>code: {clientCountryCode && clientCountryCode}</h1> */}
+        <h1>code: {clientCountryCode && clientCountryCode}</h1>
         
-        {/* <Image
+        <Image
           src={`https://countryflagsapi.com/png/${clientCountryCode}`}
           width={200}
           height={200}
-        /> */}
+        />
       </main>
     </div>
   )
 }
 
 export const getStaticProps: GetStaticProps = async ({}) => {
-  const response = await fetch("https://user-location-xi.vercel.app/api/clientcountry", {
+  const response = await fetch("https://user-location-xi.vercel.app/api/clientCountry", {
     method: "GET"
   });
 
   const data = await response.json();
 
-  console.log(data.countryCode);
+  console.log(data);
 
   return {
     props: {
-      // clientCountryCode: data.countryCode
+      clientCountryCode: data.countryCode
     }
   }
 }
