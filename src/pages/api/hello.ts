@@ -15,7 +15,7 @@ export default async function handler(
 
     console.log(clientIp);
 
-    if (clientIp) {
+    if (clientIp !== null) {
       return res.status(200).json({ name: clientIp })
     }
   }
