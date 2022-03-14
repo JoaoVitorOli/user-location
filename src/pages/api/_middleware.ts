@@ -6,16 +6,20 @@ export function middleware(req: NextRequest) {
     console.log(req.url);
     console.log(req.nextUrl);
     console.log("-----");
-    // console.log(req.body);
+    console.log(req.body);
 
-    // const response = NextResponse;
+    const response = NextResponse;
 
-    // const country = req.geo?.country;
+    const country = req.geo?.country;
   
-    // if (country) {
-    //   return response.json({ response: country });
-    // }
+    if (country) {
+      return response.json({ 
+        response: country,
+        reqUrl: req.url,
+        reqNextUrl: req.nextUrl
+      });
+    }
   
-    // response.next();
+    response.next();
   }
 }
