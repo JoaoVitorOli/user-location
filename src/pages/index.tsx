@@ -32,10 +32,6 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async ({ locales }) => {
-  // const {  } = locales]
-
-  await fetch("http://localhost:3000/api/hello", { method: "get" })
-
   return {
     props: {}
   }
