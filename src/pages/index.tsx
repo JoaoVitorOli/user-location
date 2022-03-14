@@ -9,10 +9,6 @@ const Home: NextPage = () => {
   const [clientCountryCode, setClientCountryCode] = useState("");
   
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-    })
-
     async function test() {
       const response = await fetch("/api/clientcountry", {
         method: "GET"
@@ -20,7 +16,7 @@ const Home: NextPage = () => {
 
       const data = await response.json();
 
-      setClientCountryCode(data);
+      setClientCountryCode(data.response);
     }
 
     test();
