@@ -14,7 +14,7 @@ export default function Home() {
   
   useEffect(() => {
     async function test() {
-      const response = await fetch("/api/clientcountry", {
+      const response = await fetch("/api/clientCountry", {
         method: "GET"
       });
 
