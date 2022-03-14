@@ -5,7 +5,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [clientCountryCode, setClientCountryCode] = useState("br");
+  const [clientCountryCode, setClientCountryCode] = useState("BR");
   
   useEffect(() => {
     async function test() {
@@ -38,14 +38,14 @@ export default function Home() {
           height={200}
         />
 
-        {clientCountryCode !== "jp" && (
+        {clientCountryCode !== "JP" && (
           <div>
             <h3 style={{color: "#d3d3d3"}}>email: brasil@email.com</h3>
             <h3 style={{color: "#d3d3d3"}}>telefone: (99) 9999-9999</h3>
           </div>
         )}
         
-        {clientCountryCode === "jp" && (
+        {clientCountryCode === "JP" && (
           <div>
             <h3 style={{color: "#d3d3d3"}}>email: japao@email.com</h3>
             <h3 style={{color: "#d3d3d3"}}>telefone: (22) 2222-2222</h3>
