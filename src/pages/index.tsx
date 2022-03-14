@@ -34,8 +34,8 @@ export default function Home() {
         
         <Image
           src={`https://countryflagsapi.com/png/${clientCountryCode}`}
-          width={200}
-          height={230}
+          width={240}
+          height={200}
         />
       </main>
     </div>
