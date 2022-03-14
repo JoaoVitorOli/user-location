@@ -1,17 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
-  console.log(req.body);
+  if (req.method === "GET") {
+    console.log(req.body);
 
-  const response = NextResponse;
+    const response = NextResponse;
 
-  const country = req.geo?.country;
-
-  if (country) {
-    console.log("country: " + country);
-
-    return response.json({ country });
+    const country = req.geo?.country;
+  
+    if (country) {
+      console.log("country: " + country);
+  
+      return response.json({ response: country });
+    }
+  
+    response.next();
   }
-
-  // response.next();
 }

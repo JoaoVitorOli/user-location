@@ -8,11 +8,19 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
   const { locale } = useRouter();
   
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     console.log(position);
-  //   })
-  // }, []);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+    })
+
+    async function test() {
+      const response = await fetch("/api/clientcountry", {
+        method: "GET"
+      });
+    }
+
+    test();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -32,9 +40,7 @@ const Home: NextPage = () => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async ({ locales }) => {
-  await fetch("http://localhost:3000/api/clientcountry", {
-    method: "GET"
-  });
+  
 
   return {
     props: {}

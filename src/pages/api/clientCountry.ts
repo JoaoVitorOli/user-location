@@ -9,5 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(500);
+  if (req.method === "GET") {
+    return res.status(200).json({ name: 'success' });
+  }
 }
