@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest) {
-  // const response = NextResponse;
+  const response = NextResponse;
 
-  // const country = req.ip;
+  const country = req.geo?.country;
 
-  // console.log("country: " + country);
+  if (!country) {
+    console.log("country: " + country);
 
-  // return response.json({ test: "opa" });
+    return response.json({ test: country });
+  }
 }

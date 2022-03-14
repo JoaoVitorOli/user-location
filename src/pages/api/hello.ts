@@ -13,11 +13,13 @@ export default async function handler(
   if (req.method === "GET") {
     const clientIp = requestIp.getClientIp(req);
 
-    console.log(clientIp);
+    // req.
 
-    if (clientIp !== null) {
-      return res.status(200).json({ name: clientIp })
-    }
+    // console.log(clientIp);
+
+    // if (clientIp !== null) {
+    //   return res.status(200).json({ name: clientIp })
+    // }
   }
 
   res.status(200).json({ name: 'John Doe' })

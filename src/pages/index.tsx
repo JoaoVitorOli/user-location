@@ -8,11 +8,17 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
   const { locale } = useRouter();
   
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     console.log(position);
-  //   })
-  // }, []);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log("teste: " + position);
+      })
+    }
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("teste: " + position);
+    })
+  }, []);
 
   return (
     <div className={styles.container}>
