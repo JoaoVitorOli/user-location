@@ -2,11 +2,11 @@ import type { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const { locale } = useRouter();
+  const [clientCountryCode, setClientCountryCode] = useState("");
   
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -17,6 +17,10 @@ const Home: NextPage = () => {
       const response = await fetch("/api/clientcountry", {
         method: "GET"
       });
+
+      const data = await response.json();
+
+      setClientCountryCode(data);
     }
 
     test();
@@ -32,6 +36,7 @@ const Home: NextPage = () => {
 
       <main>
         <h1>Test</h1>
+        {clientCountryCode ? clientCountryCode : "BR"}
       </main>
     </div>
   )
