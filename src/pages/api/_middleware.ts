@@ -5,7 +5,7 @@ export function middleware(req: NextRequest) {
 
   const country = req.geo?.country;
 
-  if (!country) {
+  if (country) {
     console.log("country: " + country);
 
     return response.json({ test: country });
