@@ -9,25 +9,22 @@ interface HomeProps {
   clientCountryCode: string;
 }
 
-export default function Home({ clientCountryCode }: HomeProps) {
-
-  // podemos fazer da forma que esta abaixo também: 👇👇
-
-  // const [clientCountryCode, setClientCountryCode] = useState("");
+export default function Home() {
+  const [clientCountryCode, setClientCountryCode] = useState("");
   
-  // useEffect(() => {
-  //   async function test() {
-  //     const response = await fetch("/api/clientcountry", {
-  //       method: "GET"
-  //     });
+  useEffect(() => {
+    async function test() {
+      const response = await fetch("/api/clientcountry", {
+        method: "GET"
+      });
 
-  //     const data = await response.json();
+      const data = await response.json();
 
-  //     setClientCountryCode(data.countryCode);
-  //   }
+      setClientCountryCode(data.countryCode);
+    }
 
-  //   test();
-  // }, []);
+    test();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -51,17 +48,17 @@ export default function Home({ clientCountryCode }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async ({}) => {
-  const response = await fetch("https://user-location-xi.vercel.app/api/clientCountry", {
-    method: "GET"
-  });
+  // const response = await fetch("https://user-location-xi.vercel.app/api/clientCountry", {
+  //   method: "GET"
+  // });
 
-  const data = await response.json();
+  // const data = await response.json();
 
-  console.log(data);
+  // console.log(data);
 
   return {
     props: {
-      clientCountryCode: data.countryCode
+      // clientCountryCode: data.countryCode
     }
   }
 }
