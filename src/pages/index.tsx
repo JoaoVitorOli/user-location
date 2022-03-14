@@ -39,11 +39,3 @@ const Home: NextPage = () => {
 }
 
 export default Home;
-
-export const getStaticProps: GetStaticProps = async ({ locales }) => {
-  
-
-  return {
-    props: {}
-  }
-}
