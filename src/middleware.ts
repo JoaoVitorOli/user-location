@@ -2,18 +2,24 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(req: NextRequest) {
-  console.log(req.nextUrl.pathname);
+const AUTHORIZED_URLS = [
+  'https://user-location-xi.vercel.app/api/clientCountry'
+]
 
-  if (req.nextUrl.pathname === '/api/clientCountry') {
+export function middleware(req: NextRequest) {
+  if (req.url === AUTHORIZED_URLS[0] || req.url === AUTHORIZED_URLS[1]) {
+    console.log(req.url);
+
+    const response = NextResponse;
+
     const country = req.geo?.country;
   
     if (country) {
-      return NextResponse.json({ 
+      return response.json({ 
         countryCode: country,
       });
     }
   
-    NextResponse.next();
+    response.next();
   }
 }
