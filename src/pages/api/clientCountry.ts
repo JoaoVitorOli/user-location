@@ -10,6 +10,8 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   if (req.method === "GET") {
-    return res.status(200).json({ name: 'success' });
+    if (req.query.frommiddleware) {
+      return res.status(200).json({ name: 'opaaaa' });
+    }
   }
 }

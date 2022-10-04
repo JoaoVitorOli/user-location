@@ -5,11 +5,13 @@ import type { NextRequest } from 'next/server'
 export function middleware(req: NextRequest) {
   if (req.nextUrl.pathname === '/api/clientCountry') {
     const country = req.geo?.country || 'BR';
-
+    
     if (country === 'JP') {
-      req.nextUrl.searchParams.set('c', country!);
+      const url = req.nextUrl.clone();
 
-      return NextResponse.redirect(req.nextUrl);
+      url.searchParams.set('frommiddleware', country);
+
+      return NextResponse.redirect(url);
     }
   }
 }

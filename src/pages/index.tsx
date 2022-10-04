@@ -6,19 +6,21 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const [clientCountryCode, setClientCountryCode] = useState("BR");
-  
+
   useEffect(() => {
-    async function test() {
-      const response = await fetch("/api/clientCountry", {
+    async function getUserCountry() {
+      const response = await fetch(`/api/clientCountry`, {
         method: "GET"
       });
 
       const data = await response.json();
 
+      console.log(data);
+
       setClientCountryCode(data.countryCode);
     }
 
-    test();
+    getUserCountry();
   }, []);
 
   return (
@@ -36,6 +38,7 @@ export default function Home() {
           src={`https://countryflagsapi.com/png/${clientCountryCode}`}
           width={300}
           height={200}
+          alt=''
         />
 
         {clientCountryCode !== "JP" && (
