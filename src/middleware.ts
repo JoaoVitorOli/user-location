@@ -7,23 +7,15 @@ const AUTHORIZED_URLS = [
 ]
 
 export function middleware(req: NextRequest) {
-  // if (req.url === AUTHORIZED_URLS[0] || req.url === AUTHORIZED_URLS[1]) {
-  //   console.log(req.url);
+  // if (req.url === AUTHORIZED_URLS[0]) {
+    console.log(req.url);
 
-  //   const response = NextResponse;
+    const country = req.geo?.country;
 
-  //   const country = req.geo?.country;
+    console.log(country);
   
-  //   if (country) {
-  //     return response.json({ 
-  //       countryCode: country,
-  //     });
-  //   }
-  
-  //   response.next();
+    req.nextUrl.searchParams.set('c', country!);
+
+    return NextResponse.redirect(req.nextUrl)
   // }
-
-  return NextResponse.json({ 
-    teste: 'ok',
-  });
 }
