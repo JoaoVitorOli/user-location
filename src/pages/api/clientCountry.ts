@@ -9,7 +9,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.query.c) {
-    return res.status(200).json({ country: req.query.c });
+  if (req.method === 'GET') {
+    if (req.query.c) {
+      return res.status(200).json({ country: req.query.c });
+    }
   }
 }

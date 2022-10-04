@@ -3,6 +3,12 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(req: NextRequest) {
+  const param = req.nextUrl.searchParams.get('c');
+
+  if (param) {
+    return NextResponse.next();
+  }
+
   const country = req.geo?.country || 'BR';
 
   req.nextUrl.searchParams.set('c', country);

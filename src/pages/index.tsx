@@ -15,7 +15,9 @@ export default function Home() {
 
       const data = await response.json();
 
-      setClientCountryCode(data.countryCode);
+      console.log(data);
+
+      // setClientCountryCode(data.countryCode);
     }
 
     setUrlWithCountry();
