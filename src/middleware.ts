@@ -12,12 +12,8 @@ export function middleware(req: NextRequest) {
 
     const country = req.geo?.country;
 
-    console.log(country);
+    req.nextUrl.searchParams.set('c', country!);
 
-    if (country === 'JP') {
-      req.nextUrl.searchParams.set('c', country!);
-
-      return NextResponse.redirect(req.nextUrl);
-    }
+    return NextResponse.redirect(req.nextUrl);
   }
 }
