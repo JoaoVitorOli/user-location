@@ -3,19 +3,17 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(req: NextRequest) {
-  const param = req.nextUrl.searchParams.get('c');
+  if (req.nextUrl.pathname === '/api/clientCountry') {
+    const param = req.nextUrl.searchParams.get('c');
 
-  if (param) {
-    return NextResponse.next();
+    if (param) {
+      return NextResponse.next();
+    }
+  
+    const country = req.geo?.country || 'BR';
+  
+    req.nextUrl.searchParams.set('c', country);
+  
+    return NextResponse.redirect(req.nextUrl);
   }
-
-  const country = req.geo?.country || 'BR';
-
-  req.nextUrl.searchParams.set('c', country);
-
-  return NextResponse.redirect(req.nextUrl);
-}
-
-export const config = {
-  matcher: ['/api/clientCountry']
 }
