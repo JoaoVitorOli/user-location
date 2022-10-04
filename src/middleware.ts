@@ -7,11 +7,13 @@ export function middleware(req: NextRequest) {
     const country = req.geo?.country || 'BR';
     
     if (country === 'JP') {
-      const url = req.nextUrl.clone();
+      let urlFrom = req.nextUrl.searchParams.get('from');
 
-      url.searchParams.set('frommiddleware', country);
+      req.nextUrl.searchParams.set('c', country);
 
-      return NextResponse.redirect(url);
+      urlFrom = `?c=${country}`
+
+      return NextResponse.redirect(urlFrom);
     }
   }
 }

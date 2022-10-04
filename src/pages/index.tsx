@@ -3,24 +3,31 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import styles from '../styles/Home.module.css'
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [clientCountryCode, setClientCountryCode] = useState("BR");
+  const { query }  = useRouter();
+
+  const url = 'https://user-location-xi.vercel.app/';
 
   useEffect(() => {
-    async function getUserCountry() {
-      const response = await fetch(`/api/clientCountry`, {
+    async function setUrlWithCountry() {
+      const response = await fetch(`/api/clientCountry?from=${url}`, {
         method: "GET"
       });
 
       const data = await response.json();
 
-      console.log(data);
-
       setClientCountryCode(data.countryCode);
     }
 
-    getUserCountry();
+    async function getCountry() {
+      console.log('opa');
+    }
+
+    setUrlWithCountry();
+    getCountry();
   }, []);
 
   return (
@@ -38,7 +45,6 @@ export default function Home() {
           src={`https://countryflagsapi.com/png/${clientCountryCode}`}
           width={300}
           height={200}
-          alt=''
         />
 
         {clientCountryCode !== "JP" && (
