@@ -19,15 +19,12 @@ export default function Home() {
 
       const data = await response.json();
 
-      setClientCountryCode(data.countryCode);
-    }
+      console.log(data);
 
-    async function getCountry() {
-      console.log('opa');
+      // setClientCountryCode(data.countryCode);
     }
 
     setUrlWithCountry();
-    getCountry();
   }, []);
 
   return (
