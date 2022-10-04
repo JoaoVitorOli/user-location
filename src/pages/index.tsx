@@ -13,13 +13,13 @@ export default function Home() {
 
   useEffect(() => {
     async function setUrlWithCountry() {
-      const response = await fetch(`/api/clientCountry?from=${url}`, {
+      await fetch(`/api/clientCountry?from=${url}`, {
         method: "GET"
       });
 
-      const data = await response.json();
+      // const data = await response;
 
-      console.log(data);
+      // console.log(data);
 
       // setClientCountryCode(data.countryCode);
     }
