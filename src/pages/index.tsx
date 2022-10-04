@@ -17,7 +17,7 @@ export default function Home() {
 
       console.log(data);
 
-      setClientCountryCode(data.countryCode);
+      setClientCountryCode(data.country);
     }
 
     setUrlWithCountry();
