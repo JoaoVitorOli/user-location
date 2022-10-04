@@ -2,16 +2,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
-  name: string
+  country: string | string[];
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (req.method === "GET") {
-    if (req.query.frommiddleware) {
-      return res.status(200).json({ name: 'opaaaa' });
-    }
+  if (req.query.c) {
+    return res.status(200).json({ country: req.query.c });
   }
 }

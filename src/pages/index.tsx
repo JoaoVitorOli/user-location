@@ -3,25 +3,19 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import styles from '../styles/Home.module.css'
-import { useRouter } from 'next/router';
 
 export default function Home() {
   const [clientCountryCode, setClientCountryCode] = useState("BR");
-  const { query }  = useRouter();
-
-  const url = 'https://user-location-xi.vercel.app/';
 
   useEffect(() => {
     async function setUrlWithCountry() {
-      await fetch(`/api/clientCountry?from=${url}`, {
+      const response = await fetch('/api/clientCountry', {
         method: "GET"
       });
 
-      // const data = await response;
+      const data = await response.json();
 
-      // console.log(data);
-
-      // setClientCountryCode(data.countryCode);
+      setClientCountryCode(data.countryCode);
     }
 
     setUrlWithCountry();
