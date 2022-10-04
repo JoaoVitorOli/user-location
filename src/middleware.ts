@@ -7,15 +7,17 @@ const AUTHORIZED_URLS = [
 ]
 
 export function middleware(req: NextRequest) {
-  // if (req.url === AUTHORIZED_URLS[0]) {
+  if (req.nextUrl.pathname === AUTHORIZED_URLS[0]) {
     console.log(req.url);
 
     const country = req.geo?.country;
 
     console.log(country);
-  
-    req.nextUrl.searchParams.set('c', country!);
 
-    return NextResponse.redirect(req.nextUrl)
-  // }
+    if (country === 'JP') {
+      req.nextUrl.searchParams.set('c', country!);
+
+      return NextResponse.redirect(req.nextUrl);
+    }
+  }
 }
